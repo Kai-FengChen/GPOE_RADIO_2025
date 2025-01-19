@@ -1,7 +1,3 @@
-*******************************
-* VLF_RECORDING.PY            *
-*******************************
-
 import RPi.GPIO as GPIO
 import time
 import os
