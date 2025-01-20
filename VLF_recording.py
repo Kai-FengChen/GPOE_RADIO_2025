@@ -99,7 +99,10 @@ try:
                     GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
                     GPIO.output(LED_READY, GPIO.HIGH)  # Blue LED on
                     recording = False
-                os.system("sudo halt")
+                time.sleep(1)
+                GPIO.output(LED_READY, GPIO.LOW)  # Blue LED off
+                time.sleep(1)
+                os.system("sudo shutdown now")
                 break
             else:
                 last_button_1_time = time.time()  # Reset the button press time
