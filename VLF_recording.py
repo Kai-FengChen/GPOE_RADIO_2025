@@ -82,6 +82,9 @@ try:
                 # record_audio(filename_left, filename_right)
                 filename_test = f"~/recording_{time.strftime('%Y%m%d_%H%M%S')}_test"
                 counter += 1
+                GPIO.output(LED_ACTIVE, GPIO.HIGH)  # Green LED on for testing
+                GPIO.output(LED_READY, GPIO.LOW)  # Blue LED off for testing
+                time.sleep(5)
             else:
                 # Stop the current recording
                 GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
