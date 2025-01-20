@@ -23,8 +23,10 @@ GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off, no active recording
 
 
 # Function to record audio
-def record_audio(filename_left, filename_right, duration=300):  # Default duration is 1 hour (3600 seconds)
+def record_audio(filename_left, filename_right, duration=60):  # Default duration is 1 hour (3600 seconds)
     print(f"Recording audio: {filename_left} and {filename_right}")
+    os.system("touch "+filename_left)
+    os.system("touch "+filename_right)
     
     fs = 44100  # Sampling frequency
     channels = 2  # Stereo (2 channels)
@@ -112,7 +114,7 @@ try:
                 last_button_1_time = time.time()  # Reset the button press time
 
         # Automatically stop the recording after 1 hour
-        if recording and time.time() - recording_start_time >= 305:  # 1 hour
+        if recording and time.time() - recording_start_time >= 65:  # 1 hour
             GPIO.output(LED_READY, GPIO.HIGH)  # Blue LED on
             for i in range(5):
                 GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
