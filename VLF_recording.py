@@ -115,10 +115,11 @@ try:
         # Automatically stop the recording after 1 hour
         if recording and time.time() - recording_start_time >= 60:  # 1 hour
             GPIO.output(LED_READY, GPIO.HIGH)  # Blue LED on
-            for i in range(10):
+            for i in range(5):
                 GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
                 time.sleep(0.1)
                 GPIO.output(LED_ACTIVE, GPIO.HIGH)  # Green LED ON
+                time.sleep(0.1)
             GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
             recording = False
             os.system("touch "+filename_test+"-auto_stop.wav")
