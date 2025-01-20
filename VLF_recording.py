@@ -75,17 +75,19 @@ try:
 
             if not recording:
                 # Start a new recording
-                filename_left = f"/media/usb/recording_{time.strftime('%Y%m%d_%H%M%S')}_left.wav"
-                filename_right = f"/media/usb/recording_{time.strftime('%Y%m%d_%H%M%S')}_right.wav"
+                # filename_left = f"/media/usb/recording_{time.strftime('%Y%m%d_%H%M%S')}_left.wav"
+                # filename_right = f"/media/usb/recording_{time.strftime('%Y%m%d_%H%M%S')}_right.wav"
                 recording = True
                 recording_start_time = time.time()
-                record_audio(filename_left, filename_right)
+                # record_audio(filename_left, filename_right)
+                filename_test = f"~/recording_{time.strftime('%Y%m%d_%H%M%S')}_test"
                 counter += 1
             else:
                 # Stop the current recording
                 GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
                 GPIO.output(LED_READY, GPIO.HIGH)  # Blue LED on
                 recording = False
+                os.system("touch "+filename_test+"-force_stop.wav")
 
         # Check for Button 1 press (shutdown)
         if GPIO.input(BUTTON_POWER) == GPIO.LOW:
@@ -108,10 +110,11 @@ try:
                 last_button_1_time = time.time()  # Reset the button press time
 
         # Automatically stop the recording after 1 hour
-        if recording and time.time() - recording_start_time >= 3600:  # 1 hour
+        if recording and time.time() - recording_start_time >= 60:  # 1 hour
             GPIO.output(LED_ACTIVE, GPIO.LOW)  # Green LED off
             GPIO.output(LED_READY, GPIO.HIGH)  # Blue LED on
             recording = False
+            os.system("touch "+filename_test+"-auto_stop.wav")
 
         time.sleep(0.1)
 
