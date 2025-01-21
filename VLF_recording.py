@@ -77,8 +77,8 @@ try:
 
             if not recording:
                 # Start a new recording
-                filename_left = f"~/recording_{time.strftime('%Y%m%d_%H%M%S')}_left.wav"
-                filename_right = f"~/recording_{time.strftime('%Y%m%d_%H%M%S')}_right.wav"
+                filename_left = f"/home/gpoe/recording_{time.strftime('%Y%m%d_%H%M%S')}_left.wav"
+                filename_right = f"/home/gpoe/recording_{time.strftime('%Y%m%d_%H%M%S')}_right.wav"
                 recording = True
                 recording_start_time = time.time()
                 record_audio(filename_left, filename_right)
@@ -127,8 +127,8 @@ try:
             
             recording = True
             recording_start_time = time.time()
-            filename_left = f"~/recording_{time.strftime('%Y%m%d_%H%M%S')}_left.wav"
-            filename_right = f"~/recording_{time.strftime('%Y%m%d_%H%M%S')}_right.wav"            
+            filename_left = f"/home/gpoe/recording_{time.strftime('%Y%m%d_%H%M%S')}_left.wav"
+            filename_right = f"/home/gpoe/recording_{time.strftime('%Y%m%d_%H%M%S')}_right.wav"            
             record_audio(filename_left, filename_right)
             counter += 1
             GPIO.output(LED_ACTIVE, GPIO.HIGH)  # Green LED on for testing
