@@ -16,6 +16,10 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
+    handlers=[
+        logging.FileHandler(log_filename),  # Save logs to file
+        logging.StreamHandler()             # Print logs to console (STDOUT)
+    ]    
 )
 error_logger = logging.getLogger("error_logger")
 error_handler = logging.FileHandler(error_filename)
