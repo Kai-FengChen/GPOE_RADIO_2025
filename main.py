@@ -26,7 +26,7 @@ def start_recording():
     global background_process, start_time, end_time
     if background_process is None:  # Check if a process is not already running
         print("Starting background recording script...")
-        background_process = subprocess.Popen(['sudp', 'python3', '/home/gpoe/GPOE_RADIO_2025/test.py'])
+        background_process = subprocess.Popen(['sudo', 'python3', '/home/gpoe/GPOE_RADIO_2025/test.py'])
         led_ready.off()
         led_active.on()  # Turn on LED to indicate recording is active
 
@@ -54,13 +54,6 @@ def on_button_record_press():
     else:
         stop_recording()   # Stop recording if already running
     time.sleep(0.1)
-    
-# Function to shut down the system when shutdown button is pressed
-def on_button_shutdown_press():
-    led_active.off()
-    led_ready.off()
-    print("Shutdown button pressed. Shutting down the system...")
-    # os.system("sudo shutdown now")  # Shutdown the Raspberry Pi
 
 # Handle BUTTON_SHUTDOWN press
 def button_shutdown_pressed():
