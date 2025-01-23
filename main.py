@@ -15,7 +15,7 @@ logging.basicConfig(
     filename=log_filename,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    datefmt='%Y-%m-%d %H:%M:%S',
     handlers=[
         logging.FileHandler(log_filename),  # Save logs to file
         logging.StreamHandler()             # Print logs to console (STDOUT)
