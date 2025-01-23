@@ -58,24 +58,24 @@ def on_button_record_press():
 # Handle BUTTON_SHUTDOWN press
 def button_shutdown_pressed():
     global start_time_power_button
-    if start_time_power_button is None:
-        start_time_power_button = time.time()  # Record press time
+    start_time_power_button = time.time()  # Record press time
     else:
-        press_duration = time.time() - start_time_power_button
-        if press_duration >= 2:
-            if background_process is None:
-                print(f"Shutdown button pressed for {press_duration} seconds, no recording active.")
-            else:
-                print(f"Shutdown button pressed for {press_duration} seconds. Stopping and saving recording.")
-                stop_recording()
-            time.sleep(0.1)
-            led_active.off()
-            led_ready.off()
-            print("Shutting down the system...")
 
 def button_shutdown_released():
-    global start_time_power_button
-    start_time_power_button = None  # Reset power button press time
+    global start_time_power_button    
+    press_duration = time.time() - start_time_power_button
+    if press_duration >= 2:
+        if background_process is None:
+            print(f"Shutdown button pressed for {press_duration} seconds, no recording active.")
+        else:
+            print(f"Shutdown button pressed for {press_duration} seconds. Stopping and saving recording.")
+            stop_recording()
+        time.sleep(0.1)
+        led_active.off()
+        led_ready.off()
+        print("Shutting down the system...")
+    else:
+        start_time_power_button = None  # Reset power button press time
     
 # Attach the button press handlers
 button_record.when_pressed = on_button_record_press
