@@ -59,7 +59,6 @@ def on_button_record_press():
 def button_shutdown_pressed():
     global start_time_power_button
     start_time_power_button = time.time()  # Record press time
-    else:
 
 def button_shutdown_released():
     global start_time_power_button    
