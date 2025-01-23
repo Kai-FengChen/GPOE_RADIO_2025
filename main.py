@@ -19,6 +19,7 @@ led_active = LED(LED_ACTIVE)
 background_process = None
 start_time = None
 end_time = None
+start_time_power_button = None
 
 # Function to start the background recording script
 def start_recording():
