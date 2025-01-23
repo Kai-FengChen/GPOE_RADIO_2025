@@ -6,8 +6,8 @@ from gpiozero import Button, LED
 # GPIO Setup
 BUTTON_PIN_RECORD = 27  # GPIO pin for the start/stop recording button
 BUTTON_PIN_SHUTDOWN = 17  # GPIO pin for the shutdown button
-LED_READY = 22             # GPIO pin for the LED
-LED_ACTIVE = 23
+LED_READY = 22             # GPIO pin for the Blue LED
+LED_ACTIVE = 26            # GPIO pin for the Green LED
 
 # Create Button and LED objects
 button_record = Button(BUTTON_PIN_RECORD)
