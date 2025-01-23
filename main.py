@@ -15,12 +15,15 @@ logging.basicConfig(
     filename=log_filename,
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler(log_filename),  # Save logs to file
-        logging.StreamHandler()             # Print logs to console (STDOUT)
-    ]    
+    datefmt='%Y-%m-%d %H:%M:%S'
 )
+
+# set up logging to console
+console = logging.StreamHandler()
+console.setLevel(logging.DEBUG)
+# add the handler to the root logger
+logging.getLogger('').addHandler(console)
+
 error_logger = logging.getLogger("error_logger")
 error_handler = logging.FileHandler(error_filename)
 error_handler.setLevel(logging.ERROR)
