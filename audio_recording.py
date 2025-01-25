@@ -4,7 +4,7 @@ import wave
 import time
 import logging
 from datetime import datetime
-import os
+import os, sys
 
 data_directory = sys.argv[1]
 # === Logging Configuration ===

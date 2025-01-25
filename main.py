@@ -1,6 +1,6 @@
 import time
 import subprocess
-import os
+import os, sys
 from gpiozero import Button, LED
 import logging
 from datetime import datetime
