@@ -48,7 +48,7 @@ background_process = None
 start_time = None
 end_time = None
 start_time_power_button = None
-SCRIPT_PATH = '/home/gpoe/GPOE_RADIO_2025/test.py'
+SCRIPT_PATH = '/home/gpoe/GPOE_RADIO_2025/audio_recording.py'
 
 # Function to start the background recording script
 def start_recording():
