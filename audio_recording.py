@@ -4,12 +4,14 @@ import wave
 import time
 import logging
 from datetime import datetime
+import os
 
+data_directory = sys.argv[1]
 # === Logging Configuration ===
 script_name = "audio_recorder"
 log_date = datetime.now().strftime('%Y-%m-%d')
-log_filename = f"{log_date}_{script_name}.log"
-error_filename = f"{log_date}_{script_name}_error.log"
+log_filename = os.path.join(data_directory, f"{log_date}_{script_name}.log")
+error_filename = os.path.join(data_directory, f"{log_date}_{script_name}_error.log")
 
 # Create logger
 logger = logging.getLogger(script_name)
@@ -47,7 +49,7 @@ def record_audio():
         while True:
             # Generate new filename with date and time
             start_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-            filename = f"recording_{start_time}.wav"
+            filename = os.path.join(data_directory, f"recording_{start_time}.wav")
             logger.info(f"Starting new recording: {filename}")
 
             # Open WAV file for writing

@@ -4,12 +4,19 @@ import os
 from gpiozero import Button, LED
 import logging
 from datetime import datetime
+from pathlib import Path
+
+if len(sys.argv) == 1:
+    data_directory = "./"
+else:
+    data_directory = sys.argv[1]
+    Path(data_directory).mkdir(parents=True, exist_ok=True)
 
 # Logging
 script_name = "GPOE_radio_recording"
 log_date = datetime.now().strftime('%Y-%m-%d')
-log_filename = f"{script_name}-{log_date}.log"
-error_filename = f"{script_name}-{log_date}_error.log"
+log_filename = os.path.join(data_directory, f"{script_name}-{log_date}.log")
+error_filename = os.path.join(data_directory, f"{script_name}-{log_date}_error.log")
 
 logging.basicConfig(
     filename=log_filename,
@@ -50,13 +57,14 @@ end_time = None
 start_time_power_button = None
 SCRIPT_PATH = '/home/gpoe/GPOE_RADIO_2025/audio_recording.py'
 
+
 # Function to start the background recording script
 def start_recording():
     global background_process, start_time, end_time
     try:
         if background_process is None:  # Check if a process is not already running
             logging.info("Starting background recording script...")
-            background_process = subprocess.Popen(['sudo', 'python3', SCRIPT_PATH])
+            background_process = subprocess.Popen(['sudo', 'python3', SCRIPT_PATH, data_directory])
             led_ready.off()
             led_active.on()  # Turn on LED to indicate recording is active
         else:
