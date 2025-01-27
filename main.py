@@ -1,6 +1,6 @@
 import time
 import subprocess
-import os, sys
+import os, sys, signal
 from gpiozero import Button, LED
 import logging
 from datetime import datetime
@@ -78,8 +78,7 @@ def stop_recording():
     try:
         if background_process is not None:
             logging.info("Stopping background recording script...")
-            background_process.terminate()  # Terminate the background process
-            background_process.wait()  # Ensure proper process termination
+            os.kill(background_process.pid, signal.SIGINT)
             background_process = None
             led_active.blink(on_time=0.1, off_time=0.1, n=5, background=False)  # Blink LED 5 times
             led_active.off()
